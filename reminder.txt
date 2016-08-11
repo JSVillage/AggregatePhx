@@ -1,0 +1,20 @@
+start the mongod server in c:\program files\mongodb\server\3.2\bin by typing mongodb
+
+start the mongo cli by typing mongo in the same folder
+
+run mg.js from the AggregatePhoenix folder - node mg.js
+this will connect to the db and insert another event (Mike's Party) again.
+
+some search examples:
+  db.attractions.find({"category.kids": false},{title:1, _id:0})
+
+ this performs a nested find with a projection of only title, no _id or other data
+
+
+  db.attractions.find({"category.kids": false},{title:1, _id:0})
+ find all events with an expiration data that is passed.
+
+
+command to import mock data:
+C:\Program Files\MongoDB\Server\3.2\bin>mongoimport --db test --collection attractions
+ --file C:\Users\Mike\Documents\JSVillage\AggregatePhoenix\MOCK_DATA.json --jsonArray
