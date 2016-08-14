@@ -64,22 +64,70 @@ web.get('/Random', function(req, res){
   });
 });
 
+
+
+
+web.get('/Search/:tags', function(req, res){
+  var searchTags = req.params.tags.split(',').map(function(re){
+    return new RegExp(re, 'i');
+  });
+
+
+  var filter = { tags: { $in: searchTags} };
+  var proj = {
+    title:1,
+    website: 1,
+    date: 1,
+    time: 1,
+    tags : 1,
+    address : 1,
+    image: 1,
+    expires: 1
+  };
+  console.log(searchTags);
+  Attraction.findRandom(filter, proj,{ limit: 1 }, function(req, attr){
+    console.log('Found ' + (attr == ""));
+    if(attr == ""){
+      res.status(200).send("No results found for that tag!")
+    } else {
+      res.status(200).send(JSON.stringify(attr));
+    }
+
+  });
+
+
+
+
+});
+
 /**
   @@URL : localhost:8080/New/
 **/
 
-//TODO:
+
 web.post('/New/', function(req, res){
       var data = parseInfo(req);
 
       if(data.title == "" || typeof data.title == 'undefined'){
         res.status(400).send("Bad Request");
       } else {
-        var newAttraction = new Attraction(data).save(function(err, attr){
-          // res.send(err);
-          // console.log(attr);
-          res.send('Ok');
+
+        Attraction.find({ 'title': data.title }).count(function (err, res2){
+          if(err) console.log(err);
+          if(res2 > 0){
+            res.status(400).send("Duplicate Submission");
+            console.log("Duplicate Submission");
+          } else {
+            var newAttraction = new Attraction(data).save(function(err, attr){
+              // res.send(err);
+              // console.log(attr);
+              res.send('Ok');
+            });
+          };
+
         });
+
+
       };
 
 
@@ -111,9 +159,6 @@ function parseInfo(req){
 
 }
 
-function isDuplicate(doc) {
 
-    Attraction.findOne({ title: doc.title })
-}
 
 //TODO - try adding some more features to API - search, duplicates, etc...
