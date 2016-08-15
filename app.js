@@ -95,10 +95,54 @@ web.get('/Search/:tags', function(req, res){
 
   });
 
-
-
-
 });
+
+  web.get('/FindExpired', function(req, res){
+    var d = new Date();
+
+
+    var filter = { expires: { $lt: d} };
+    var proj = {
+      title:1,
+      website: 1,
+      date: 1,
+      time: 1,
+      tags : 1,
+      address : 1,
+      image: 1,
+      expires: 1
+    };
+
+    Attraction.find(filter, proj, function(req, attr){
+      console.log('Found ' + (attr == ""));
+      if(attr == ""){
+        res.status(200).send("No results found!");
+      } else {
+        res.status(200).send(JSON.stringify(attr));
+      }
+
+    });
+  });
+
+  web.get('/RemoveExpired', function(req, res){
+    var d = new Date();
+
+
+    var filter = { expires: { $lt: d} };
+
+
+    Attraction.remove(filter, function(req, attr){
+      console.log('Found ' + (attr == ""));
+      if(attr == ""){
+        res.status(200).send("No results found!");
+      } else {
+        res.status(200).send("Removed Expired Attractions");
+      }
+
+    });
+  });
+
+
 
 /**
   @@URL : localhost:8080/New/
