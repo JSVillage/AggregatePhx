@@ -1,31 +1,33 @@
 var cities = [
-	'Phoenix'
-	// 'Glendale',
-	// 'Suprise',
-	// 'Mesa',
-	// 'Tempe',
-	// 'Scottsdale'
+	'Phoenix',
+	'Glendale',
+	'Suprise',
+	'Mesa',
+	'Tempe',
+	'Scottsdale'
 ],
 cheerio = require("cheerio"),
-request = require("request");
+request = require("request"),
+http = require('http');
 
 function urlParse(City,Start){
 	return "https://www.yelp.com/search?find_desc=Restaurants&find_loc="+ City +",+AZ&start=" + Start
 };
 
 for(var i in cities){
-	for (var incrementPage = 0; incrementPage < 10; incrementPage = incrementPage + 10) {
+	for (var incrementPage = 0; incrementPage < 70; incrementPage = incrementPage + 10) {
 		//console.log(urlParse(cities[i], incrementPage))
 		var url = urlParse(cities[i], incrementPage);
 		request(url, function(error, response, body){
 			if(!error){
-				var $ = cheerio.load(body),
+				var $ = cheerio.load(body, {decodeEntities: false}),
 					results = $(".regular-search-result");
 				$(results).each(function(i, result){
 					var title = $(result).find('.biz-name > span').html(),
 						tags = getTags($, $(result).find('.category-str-list')),
-						address = getAddress($, $(result).find('address'));
-
+						address = getAddress($, $(result).find('address')),
+						photo = $(result).find('.photo-box-img').attr('src').replace('90s', '300s').replace('//', '');
+						photo = 'http://' + photo;
 
 					var data = {
 						'title':title,
@@ -36,10 +38,19 @@ for(var i in cities){
 						'zip' : address.Zip,
 						'expires' : null,
 						'time' : null,
-						
+						'image' : photo
 					};
-
-					console.log(data);
+					
+					request.post(
+					    'http://www.aggregatephx.com/New/',
+					    { form: data },
+					    function (error, response, body) {
+					        if (!error && response.statusCode == 200) {
+					            console.log(body)
+					        }
+					    }
+					);
+					
 				})
 
 				console.log(url);
