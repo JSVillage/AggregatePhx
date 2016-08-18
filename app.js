@@ -1,10 +1,16 @@
-var web = require('express')(),
+var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    random = require('mongoose-random');
+    random = require('mongoose-random'),
+    mustache = require('mustache-express'),
+    fs = require('fs');
+    var web = express();
 
 web.use(bodyParser.urlencoded({extended:false}));
 web.use(bodyParser.json());
+web.engine('html', mustache());
+web.set('views', __dirname + '/assets')
+web.use('/css', express.static('css'));
 
 var attractionSchema = mongoose.Schema({
   title:{
@@ -31,9 +37,6 @@ var Attraction = mongoose.model('Attraction', attractionSchema),
     db = [];
 
 
-
-
-
 mongoose.connect('mongodb://localhost:27017/aggregatephx', function(err, database){
   web.listen('8080', function(){
     db = database;
@@ -44,8 +47,29 @@ mongoose.connect('mongodb://localhost:27017/aggregatephx', function(err, databas
 
 //Hello I'm on Site
 web.get('/', function(req, res){
-  res.send('Hello World');
+
+  getRandomAttr().then(function(data){
+    console.log(data);
+      res.render('popup.html', data[0])
+  });
+
 });
+
+
+function getRandomAttr() {
+  return new Promise(function(resolve, reject){
+    var attraction = [];
+    Attraction.findRandom().limit(1).exec(function (err, attr) {
+     if(err) console.log("Nothing returned");
+     attraction = attr;
+   }).then(function(attraction){
+     resolve(attraction);
+   })
+  });
+
+
+
+}
 
 /*
   /Random/
