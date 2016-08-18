@@ -3,6 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     random = require('mongoose-random'),
     mustache = require('mustache-express'),
+    moment = require('moment'),
     fs = require('fs');
     var web = express();
 
@@ -50,8 +51,17 @@ mongoose.connect('mongodb://'+process.env.Username+':'+process.env.Password+'@ds
 web.get('/', function(req, res){
 
   getRandomAttr().then(function(data){
-    console.log(data);
-      res.render('popup.html', data[0])
+    //console.log(data);
+
+//date is purposefully wrong right now for testing because none of our entries have dates yet
+// once events with dates are in the db change to use data[0].date, not new Date().
+    var date = moment(new Date());
+    //var date = moment(data[0].date);
+    data[0].date = date;
+    data[0].date.month = date.format('MMM');
+    data[0].date.day = date.format('D');
+
+    res.render('popup.html', data[0])
   });
 
 });
