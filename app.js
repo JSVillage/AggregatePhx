@@ -32,10 +32,8 @@ var Attraction = mongoose.model('Attraction', attractionSchema),
 
 
 
-
-
-mongoose.connect('mongodb://localhost:27017/aggregatephx', function(err, database){
-  web.listen('8080', function(){
+mongoose.connect('mongodb://'+process.env.Username+':'+process.env.Password+'@ds161255.mlab.com:61255/aggregatephx', function(err, database){
+  web.listen(process.env.PORT || 8080, function(){
     db = database;
       console.log('Started');
   })
