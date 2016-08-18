@@ -7,9 +7,14 @@
     <title>AggPhx</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jQuery -->
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Javascript -->
     <script src="script.js"></script>
   </head>
 
@@ -25,8 +30,8 @@
             </div>
           </div> <!-- /.row -->
         </div> <!-- /.container -->
-
-
+          
+          
         <div class="container">
           <div class="row">
 
@@ -48,36 +53,41 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-              <li><a href="#">Fun</a></li>
-              <li><a href="#">Nuetral</a></li>
-              <li><a href="#">Boring</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Invite</a></li>
+              <li><button type="button" class="btn btn-primary">Fun</button></li>
+              <li><button type="button" class="btn btn-primary">Nuetral</button></li>
+              <li><button type="button" class="btn btn-primary">Boring</button></li>
+              <li><button type="button" class="btn btn-primary right">Invite</button></li>
             </ul>
         </div><!-- /.container-fluid -->
       </nav>
-
+    
       <div class="container">
         <div class="row">
           <div class="col-lg-5 card" id="info" >
             <H3>Information</H3>
 
-            <ul class="nav nav-tabs">
-              <li role="presentation" class="active"><a href="#address" data-toggle="tab">Address</a></li>
-              <li role="presentation"><a href="#date" data-toggle="tab">Date</a></li>
-              <li role="presentation"><a href="#link" data-toggle="tab">Link</a></li>
+            <ul id="content">
+              <li id="address">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Address
+              </li>
+              <li id="eventDate">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                Date
+              </li>
+              <li id="eventLink">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                Link
+              </li>
             </ul>
-
-            <p>Content</p>
           </div> <!-- /.card -->
           <div class="col-lg-6 card" id="map">
-            <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJy3mhUO0SK4cRrBtKNfjHaYw&key=AIzaSyDWVqI-5rKq3ky53_vwYYnP58OpfxzIAYc" ></iframe>
+           <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJy3mhUO0SK4cRrBtKNfjHaYw&key=AIzaSyDWVqI-5rKq3ky53_vwYYnP58OpfxzIAYc" ></iframe>
         </div>
         </div> <!-- /.row -->
       </div>
-
+        
     </div> <!-- /.container -->
-
+    
   </body>
 </html>
