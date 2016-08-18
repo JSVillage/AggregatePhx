@@ -35,10 +35,11 @@ attractionSchema.plugin(random, { path: 'r' });
 
 var Attraction = mongoose.model('Attraction', attractionSchema),
     db = [];
-
+//console.log(process.env.Username)
 
 mongoose.connect('mongodb://'+process.env.Username+':'+process.env.Password+'@ds161255.mlab.com:61255/aggregatephx', function(err, database){
   web.listen(process.env.PORT || 8080, function(){
+    console.log(err);
     db = database;
       console.log('Started');
   })
@@ -226,7 +227,3 @@ function parseInfo(req){
   return data;
 
 }
-
-
-
-//TODO - try adding some more features to API - search, duplicates, etc...
