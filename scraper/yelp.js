@@ -4,7 +4,9 @@ var cities = [
 	'Suprise',
 	'Mesa',
 	'Tempe',
-	'Scottsdale'
+	'Scottsdale',
+	'Peoria',
+	'Goodyear'
 ],
 cheerio = require("cheerio"),
 request = require("request"),
@@ -15,7 +17,7 @@ function urlParse(City,Start){
 };
 
 for(var i in cities){
-	for (var incrementPage = 0; incrementPage < 70; incrementPage = incrementPage + 10) {
+	for (var incrementPage = 0; incrementPage < 50; incrementPage = incrementPage + 10) {
 		//console.log(urlParse(cities[i], incrementPage))
 		var url = urlParse(cities[i], incrementPage);
 		request(url, function(error, response, body){
@@ -31,7 +33,7 @@ for(var i in cities){
 
 					var data = {
 						'title':title,
-						'tags':tags,
+						'tags':tags.join(','),
 						'address' : address.Address,
 						'city' : address.City,
 						'state' : address.State,
@@ -40,6 +42,7 @@ for(var i in cities){
 						'time' : null,
 						'image' : photo
 					};
+					//console.log(data);
 					
 					request.post(
 					    'http://www.aggregatephx.com/New/',
