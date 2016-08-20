@@ -86,13 +86,20 @@
               {{/date}}
               {{#website}}
               <li id="eventLink">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <a href="{{website}}">More Info</a>
+              </li>
+              {{/website}}
+
+              {{#source}}
+              <li id="eventLink">
                 <script type="text/javascript">
 
                 </script>
-                <i class="fa fa-external-link" aria-hidden="true"></i>
-                {{website}}
+                <i class="fa fa-home" aria-hidden="true"></i>
+                {{source}}
               </li>
-              {{/website}}
+              {{/source}}
             </ul>
           </div> <!-- /.card -->
           <div class="col-lg-6 card" id="map">
