@@ -64,9 +64,14 @@ web.get('/', function(req, res){
     }
 
 
-  //Use default bg image if no image is included in document
+  //Use default bg image if no image is included in document, choose event or food image
     if (!data[0].image) {
-      data[0].image = 'css/food.png';
+      if(/Event/.test(data[0].tags)){
+        data[0].image = 'css/skyline.png';
+      } else {
+        data[0].image = 'css/food.png';
+      }
+
     }
 //testing source
   //  data[0].source = "This came from Yelp";
