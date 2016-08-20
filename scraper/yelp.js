@@ -34,13 +34,14 @@ for(var i in cities){
 					var data = {
 						'title':title,
 						'tags':tags.join(','),
-						'address' : address.Address,
+						'address' : address.Address + ' ' + address.City + ', ' + address.State + ' ' address.Zip,
 						'city' : address.City,
 						'state' : address.State,
 						'zip' : address.Zip,
 						'expires' : null,
 						'time' : null,
-						'image' : photo
+						'image' : photo,
+						'source' : 'yelp.com'
 					};
 					//console.log(data);
 					

@@ -9,7 +9,8 @@
     "mongoose": "4.5.8",
     "mongoose-random": "^0.1.1",
     "mustache": "^2.2.1",
-    "mustache-express": "^1.2.2"
+    "mustache-express": "^1.2.2",
+    "public-google-calendar": "^0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
