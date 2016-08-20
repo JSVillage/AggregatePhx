@@ -243,6 +243,8 @@ function parseInfo(req){
       data.address.state = req.body.state,
       data.image = req.body.image,
       data.expires = req.body.expires;
+      data.source = req.body.source;
+      data.description = req.body.description;
 
   return data;
 
