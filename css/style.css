@@ -24,26 +24,48 @@ h3 {
 	border-bottom: 1px solid #000000;
 }
 
+@media (max-width: 500px) {
+  .jumbotron#header {
+    background-size: 100% auto;
+  }
+}
+
+@media (min-width: 501px) {
+  .jumbotron#header {
+    background-size: 70% auto;
+  }
+}
+
 .jumbotron#header {
 	color: white;
 	margin-bottom: 0;
     padding: 10% 0% 0% 0%;
-	background-image: url("https://hd.unsplash.com/photo-1467810563316-b5476525c0f9");
-	background-size: 100% 100%;
+	//background-image: url("https://hd.unsplash.com/photo-1467810563316-b5476525c0f9");
+  background-color: rgba(10,10,10,.9);
+	//background-size: 70% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.titleDiv {
+  display:flex;
+  justify-content: center;
 }
 
 #title {
     font-size: 50px;
     text-shadow: 1px 1px 5px #000;
+    background: rgba(10,10,10,.5);
 }
 
 #date {
-    border: 3px white solid;
+    //border: 3px rgba(200,200,200,.6) solid;
     border-radius: 15px;
     width: 100px;
     height: 100px;
     font-size: 25px;
     padding-top: 5px;
+    background: rgba(10,10,10,.5);
 }
 
 #brand {
