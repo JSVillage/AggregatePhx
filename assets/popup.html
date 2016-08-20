@@ -31,10 +31,17 @@
               </div>
             </div>
           </div> <!-- /.row -->
-            {{#tags}}
-              <p>{{tags}}</p>
-            {{/tags}}
         </div> <!-- /.container -->
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="tagDiv">
+              {{#tags}}
+                <p id="tags">{{tags}}</p>
+              {{/tags}}
+            </div>
+          </div>
+        </div>
         
         <div class="container">
           <div class="row">
@@ -102,7 +109,15 @@
             </ul>
           </div> <!-- /.card -->
           <div class="col-lg-6 card" id="map">
-           <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJy3mhUO0SK4cRrBtKNfjHaYw&key=AIzaSyDWVqI-5rKq3ky53_vwYYnP58OpfxzIAYc" ></iframe>
+
+          {{
+            var address = address.address;
+            if(address.length == 0){
+              address = 'Phoenix+az'
+            }
+          }}
+           <!-- <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJy3mhUO0SK4cRrBtKNfjHaYw&key=AIzaSyDWVqI-5rKq3ky53_vwYYnP58OpfxzIAYc" ></iframe> -->
+           <iframe width="600" height="450" frameborder="0" style="border:0" src='https://www.google.com/maps/embed/v1/place?key=AIzaSyDWVqI-5rKq3ky53_vwYYnP58OpfxzIAYc&q={{address}}' ></iframe>
         </div>
         </div> <!-- /.row -->
       </div>

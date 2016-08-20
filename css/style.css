@@ -41,15 +41,21 @@ h3 {
 	margin-bottom: 0;
     padding: 10% 0% 0% 0%;
 	//background-image: url("https://hd.unsplash.com/photo-1467810563316-b5476525c0f9");
-  background-color: rgba(10,10,10,.9);
+  	background-color: rgba(10,10,10,.9);
 	//background-size: 70% auto;
-  background-repeat: no-repeat;
-  background-position: center;
+  	background-repeat: no-repeat;
+  	background-position: center;
+
 }
 
-.titleDiv {
-  display:flex;
-  justify-content: center;
+.titleDiv, .tagDiv {
+	display: flex;
+	justify-content: center;
+}
+
+#tags {
+	text-shadow: 1px 1px 5px #000;
+	background: rgba(10,10,10,.5);
 }
 
 #title {
