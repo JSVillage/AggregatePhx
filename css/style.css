@@ -24,13 +24,25 @@ h3 {
 	border-bottom: 1px solid #000000;
 }
 
+@media (max-width: 500px) {
+  .jumbotron#header {
+    background-size: 100% auto;
+  }
+}
+
+@media (min-width: 501px) {
+  .jumbotron#header {
+    background-size: 70% auto;
+  }
+}
+
 .jumbotron#header {
 	color: white;
 	margin-bottom: 0;
     padding: 10% 0% 0% 0%;
 	//background-image: url("https://hd.unsplash.com/photo-1467810563316-b5476525c0f9");
   background-color: rgba(10,10,10,.9);
-	background-size: 70% auto;
+	//background-size: 70% auto;
   background-repeat: no-repeat;
   background-position: center;
 }
