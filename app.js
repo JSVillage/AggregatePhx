@@ -29,7 +29,9 @@ var attractionSchema = mongoose.Schema({
       state:String
   },
   image: String,
-  expires: { type: Date }
+  expires: { type: Date },
+  source: String,
+  description: String
 });
 
 attractionSchema.plugin(random, { path: 'r' });
@@ -53,15 +55,23 @@ web.get('/', function(req, res){
   getRandomAttr().then(function(data){
     //console.log(data);
 
-//date is purposefully wrong right now for testing because none of our entries have dates yet
-// once events with dates are in the db change to use data[0].date, not new Date().
-    var date = moment(new Date());
-    //var date = moment(data[0].date);
-    data[0].date = date;
-    data[0].date.month = date.format('MMM');
-    data[0].date.day = date.format('D');
+    // format date if available
+    if(data[0].date){
+      var date = moment(data[0].date);
+      data[0].date = date;
+      data[0].date.month = date.format('MMM');
+      data[0].date.day = date.format('D');
+    }
 
-    res.render('popup.html', data[0])
+
+  //Use default bg image if no image is included in document
+    if (!data[0].image) {
+      data[0].image = 'css/food.png';
+    }
+//testing source
+  //  data[0].source = "This came from Yelp";
+
+    res.render('popup.html', data[0]);
   });
 
 });
